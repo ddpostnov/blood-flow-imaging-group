@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blood Flow Imaging Group · CFIN, Aarhus University</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f6f3ec; --paper-2:#efe9dd; --ink:#1d1b18; --ink-soft:#4a463f;
+    --blood:#8c1d27; --teal:#134e57; --line:#d9d1c2; --gold:#b07d33;
+    --maxw:920px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper); color:var(--ink);
+    font-family:"Hanken Grotesk",sans-serif; font-size:18px; line-height:1.62;
+    -webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(circle at 18% -10%, rgba(19,78,87,.06), transparent 42%),
+                     radial-gradient(circle at 92% 4%, rgba(140,29,39,.05), transparent 40%);
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 26px}
+  a{color:var(--blood); text-decoration:none; border-bottom:1px solid rgba(140,29,39,.35)}
+  a:hover{border-color:var(--blood)}
+
+  /* ---------- HERO ---------- */
+  header.hero{padding:62px 0 30px; border-bottom:1px solid var(--line)}
+  .kicker{font-size:13px; letter-spacing:.22em; text-transform:uppercase;
+    color:var(--teal); font-weight:600; margin-bottom:18px}
+  h1{font-family:"Fraunces",serif; font-weight:500; line-height:1.02;
+    font-size:clamp(40px,7.4vw,76px); letter-spacing:-.015em; margin-bottom:8px}
+  h1 .amp{color:var(--blood)}
+  .place{font-family:"Fraunces",serif; font-style:italic; font-size:clamp(18px,2.6vw,23px);
+    color:var(--ink-soft); margin-bottom:30px}
+  .quote{font-family:"Fraunces",serif; font-size:clamp(20px,2.9vw,27px);
+    line-height:1.4; font-weight:400; max-width:760px; margin:6px 0 0;
+    padding-left:22px; border-left:3px solid var(--blood); color:#2a2722}
+  figure.hero-img{margin:40px 0 0}
+  figure.hero-img img{width:100%; display:block; border-radius:4px;
+    box-shadow:0 18px 44px -22px rgba(29,27,24,.55)}
+  figure.hero-img figcaption{font-size:13.5px; color:var(--ink-soft); margin-top:10px; font-style:italic}
+
+  /* ---------- SECTIONS ---------- */
+  section{padding:56px 0; border-bottom:1px solid var(--line)}
+  .sec-num{font-family:"Fraunces",serif; font-style:italic; color:var(--blood);
+    font-size:15px; letter-spacing:.04em; margin-bottom:10px}
+  h2{font-family:"Fraunces",serif; font-weight:500; letter-spacing:-.01em;
+    font-size:clamp(28px,4.4vw,40px); line-height:1.08; margin-bottom:26px}
+  h3{font-family:"Fraunces",serif; font-weight:600; font-size:21px;
+    margin:0 0 4px; letter-spacing:-.005em}
+  p{margin-bottom:18px}
+  p.lead{font-size:20px; color:#2c2924}
+  strong{font-weight:600}
+  .small{font-size:14.5px; color:var(--ink-soft)}
+
+  .subhead{font-size:12.5px; letter-spacing:.18em; text-transform:uppercase;
+    color:var(--teal); font-weight:600; margin:34px 0 14px}
+
+  /* chips */
+  .chips{display:flex; flex-wrap:wrap; gap:9px; margin:4px 0 6px}
+  .chip{background:var(--paper-2); border:1px solid var(--line); border-radius:40px;
+    padding:6px 15px; font-size:14.5px; font-weight:500; color:#33302a}
+  .chip.key{background:#fff; border-color:rgba(140,29,39,.3); color:var(--blood)}
+
+  /* funders */
+  .funders{display:flex; flex-wrap:wrap; gap:10px; margin-top:6px}
+  .funder{border:1px solid var(--line); background:#fff; border-radius:4px;
+    padding:10px 16px; font-weight:600; font-size:15px; color:var(--teal)}
+
+  /* callout */
+  .callout{background:#fff; border:1px solid var(--line); border-left:3px solid var(--teal);
+    border-radius:4px; padding:22px 24px; margin:8px 0 4px}
+  .callout h3{color:var(--teal)}
+
+  /* technique list */
+  .tech{display:grid; grid-template-columns:1fr; gap:30px; margin-top:8px}
+  .tech-item{display:grid; grid-template-columns:1.05fr 1fr; gap:26px; align-items:center}
+  .tech-item:nth-child(even){grid-template-columns:1fr 1.05fr}
+  .tech-item:nth-child(even) .tx{order:2}
+  .tech-item:nth-child(even) .im{order:1}
+  .tech-item .im img{width:100%; display:block; border-radius:4px;
+    box-shadow:0 12px 30px -20px rgba(29,27,24,.6); background:#111}
+  .tech-item .tag{font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--gold); font-weight:700; margin-bottom:7px}
+  .tech-item p{margin-bottom:0; font-size:16.5px; line-height:1.56}
+
+  /* projects */
+  .proj{border-top:1px solid var(--line); padding:22px 0}
+  .proj:first-of-type{border-top:none}
+  .proj .meta{font-size:13px; letter-spacing:.04em; color:var(--teal);
+    font-weight:600; text-transform:uppercase; margin-bottom:5px}
+  .proj h3{margin-bottom:7px}
+  .proj p{margin-bottom:0; font-size:16.5px}
+  .proj .yr{color:var(--blood)}
+
+  figure.diagram{margin:0 0 30px}
+  figure.diagram img{width:100%; display:block; border-radius:4px;
+    border:1px solid var(--line); background:#fff; padding:10px}
+  figure.diagram figcaption{font-size:13.5px; color:var(--ink-soft); margin-top:10px; font-style:italic}
+
+  /* join box */
+  .join{background:#1d1b18; color:#f1ece1; border-radius:6px; padding:30px 30px}
+  .join h3{color:#fff; font-size:23px; margin-bottom:10px}
+  .join p{color:#cfc7b8; margin-bottom:14px}
+  .join a{color:#f0c98a; border-color:rgba(240,201,138,.4)}
+  .join a:hover{border-color:#f0c98a}
+  .mail{font-family:"Fraunces",serif; font-size:21px}
+
+  footer{padding:38px 0 60px; color:var(--ink-soft); font-size:14px}
+  footer .org{font-weight:600; color:var(--ink)}
+
+  @media(max-width:680px){
+    body{font-size:17px}
+    .tech-item, .tech-item:nth-child(even){grid-template-columns:1fr}
+    .tech-item .tx, .tech-item .im{order:0 !important}
+    section{padding:44px 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Blood Flow Imaging Group · CFIN · Aarhus University</div>
+    <h1>Seeing blood flow,<br>understanding <span class="amp">the brain</span></h1>
+    <div class="place">An interdisciplinary research team at the Center of Functionally Integrative Neuroscience, Department of Clinical Medicine</div>
+    <p class="quote">We investigate microvascular dynamics as a key link between cardiometabolic risk factors and dementia, pioneering translational optical imaging to uncover novel diagnostic biomarkers and therapeutic targets.</p>
+    <figure class="hero-img">
+      <img src="assets/team.jpg" alt="Members of the Blood Flow Imaging Group at CFIN">
+      <figcaption>The Blood Flow Imaging Group at CFIN, Aarhus University (2026).</figcaption>
+    </figure>
+  </div>
+</header>
+
+<!-- ================= SECTION 1 ================= -->
+<section id="about">
+  <div class="wrap">
+    <div class="sec-num">I · Who we are</div>
+    <h2>An interdisciplinary lab bridging optics, physiology and the clinic</h2>
+    <p class="lead">The Blood Flow Imaging Group develops and applies novel optical imaging methods to advance the understanding and diagnosis of cardiometabolic and neurovascular disorders. We work across the full translational chain &mdash; from physics and instrument design, through pre-clinical experiments, to imaging in patients &mdash; with the conviction that the same optical principles can reveal microvascular health in animals and humans alike.</p>
+
+    <div class="subhead">Key research fields</div>
+    <div class="chips">
+      <span class="chip key">Brain hemodynamics in health &amp; dementia</span>
+      <span class="chip key">Cardiovascular disorders</span>
+      <span class="chip">Pulsatility</span>
+      <span class="chip">Vasomotion</span>
+      <span class="chip">Dynamic light scattering</span>
+      <span class="chip">Hyperspectral imaging</span>
+    </div>
+
+    <div class="subhead">Infrastructure we built</div>
+    <p>Alongside our research, we have established &mdash; and now manage and continue to expand &mdash; a <strong>Translational Optical Imaging Infrastructure</strong>: a suite of contrast-agent-free imaging systems available to researchers across Aarhus University and beyond. More detail follows in the second section below.</p>
+
+    <div class="subhead">Funding</div>
+    <p class="small" style="margin-bottom:12px">Our research and infrastructure are supported by:</p>
+    <div class="funders">
+      <span class="funder">Lundbeck Foundation</span>
+      <span class="funder">Novo Nordisk Foundation</span>
+      <span class="funder">Independent Research Fund Denmark</span>
+    </div>
+
+    <div class="subhead">Extended research interests</div>
+    <div class="chips">
+      <span class="chip">Vascular physiology</span>
+      <span class="chip">Neuroscience</span>
+      <span class="chip">Diabetes</span>
+      <span class="chip">Hypertension</span>
+      <span class="chip">Image segmentation</span>
+      <span class="chip">Signal processing</span>
+      <span class="chip">AI for image analysis &amp; biomarker extraction</span>
+      <span class="chip">Optical coherence tomography</span>
+      <span class="chip">Ultrasound &amp; photoacoustics</span>
+    </div>
+
+    <div class="subhead">The team</div>
+    <p>As of May 2026, the group is led by the PI <strong>Dmitry Postnov</strong> and includes <strong>two postdocs</strong> and <strong>three PhD students</strong>. Members bring diverse backgrounds, with work spanning pre-clinical experimental biology, clinical imaging, optical engineering and data science &mdash; the mix that makes genuinely translational imaging possible.</p>
+
+    <div class="subhead">How to join us</div>
+    <div class="join">
+      <h3>Let's build something together</h3>
+      <p>We are always open to collaborations and warmly welcome prospective members who would like to apply for funding to join the lab. If that's you, email <a href="mailto:dpostnov@cfin.au.dk" class="mail">dpostnov@cfin.au.dk</a> with your idea and the funding you plan to apply for &mdash; we will support you as much as we can.</p>
+      <p style="margin-bottom:0">Open calls for specific roles are announced whenever the group secures the associated funding.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 2 ================= -->
+<section id="infrastructure">
+  <div class="wrap">
+    <div class="sec-num">II · Translational Optical Imaging Infrastructure</div>
+    <h2>One toolbox, from the mouse cortex to the patient's retina</h2>
+    <p class="lead">At its core are contrast-agent-free technologies that non-invasively probe perfusion and chromophore dynamics in the brain, retina, skin &mdash; and, in principle, any exposed organ. Because the same physics applies in animal models and humans, the infrastructure yields <strong>shared biomarkers across species</strong>, complemented by wide-field fluorescence microscopy and a planned expansion toward photoacoustic imaging.</p>
+    <div class="callout">
+      <h3>Built on external funding, open to the community</h3>
+      <p class="small" style="margin-bottom:0">The infrastructure has been assembled entirely with competitive external funding and is available to other researchers at AU; where relevant it can also operate as a core facility offering data analysis and interpretation support. A long-term goal is to establish the first data bank for optical imaging modalities.</p>
+    </div>
+
+    <div class="subhead" style="margin-top:40px">Techniques available in the group</div>
+    <div class="tech">
+
+      <div class="tech-item">
+        <div class="tx">
+          <div class="tag">Scattering · perfusion</div>
+          <h3>Laser Speckle Contrast Imaging (LSCI)</h3>
+          <p>Wide-field, label-free imaging of blood-flow dynamics. Coherent light scattered by moving red blood cells forms a fluctuating speckle pattern whose blurring encodes perfusion &mdash; mapped continuously across large fields of view, in cortex, retina or skin.</p>
+        </div>
+        <div class="im"><img src="assets/lsci-mouse-cortex.jpg" alt="LSCI blood-flow-index map of the mouse cortex"></div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tx">
+          <div class="tag">Scattering · sub-second dynamics</div>
+          <h3>High-Speed LSCI &amp; multi-modal wide-field imaging</h3>
+          <p>A custom, patented platform combining LSCI, Dynamic Light Scattering Imaging (DLSI) and fluorescence, reaching thousands of frames per second. It resolves the fast events that conventional imaging averages away &mdash; pulsatility, vasomotion, pulse-wave velocity and microvascular stiffness &mdash; across the whole vascular network.</p>
+        </div>
+        <div class="im"><img src="assets/microvascular-dynamics.jpg" alt="Multi-modal microvascular dynamics: blood flow, pulsatility, pulse-wave propagation and vasomotion"></div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tx">
+          <div class="tag">Fluorescence · transit &amp; clearance</div>
+          <h3>Wide-field fluorescence microscopy</h3>
+          <p>Tracks fluorescent tracers through the microvasculature to quantify transit-time heterogeneity and vasomotion, and to follow glymphatic clearance, blood&ndash;brain-barrier permeability and amyloid accumulation in pre-clinical models.</p>
+        </div>
+        <div class="im"><img src="assets/vasomotion-mouse-cortex.jpg" alt="Wide-field fluorescence vasomotion map of the mouse cortex"></div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tx">
+          <div class="tag">Coherence · structure</div>
+          <h3>Optical Coherence Tomography (OCT)</h3>
+          <p>Depth-resolved structural imaging and angiography of microvascular networks at micron-scale resolution, providing the anatomical context for our functional flow measurements.</p>
+        </div>
+        <div class="im"><img src="assets/oct-angiogram-mouse-cortex.jpg" alt="OCT angiogram of the mouse cortex"></div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tx">
+          <div class="tag">Absorption · oxygenation</div>
+          <h3>Visible-Light OCT (visOCT)</h3>
+          <p>Extends OCT into the visible spectrum to add label-free oxygenation readouts alongside ultrastructure. We operate the first &mdash; and currently only &mdash; rodent and human retinal visOCT systems in Denmark.</p>
+        </div>
+        <div class="im"><img src="assets/retinal-oct-angiography.jpg" alt="Human retinal visible-light OCT angiography"></div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tx">
+          <div class="tag">Scattering · clinical retina</div>
+          <h3>Laser Doppler Holography (LDH)</h3>
+          <p>High-speed holographic imaging of the human retina that recovers absolute arterial and venous blood-flow waveforms and pulse-wave velocity within seconds. Now installed for clinical use at AUH Ophthalmology.</p>
+        </div>
+        <div class="im"><img src="assets/retinal-laser-doppler-holography.jpg" alt="Human retinal Laser Doppler Holography with arterial and venous flow traces"></div>
+      </div>
+
+      <div class="tech-item">
+        <div class="tx">
+          <div class="tag">Scattering + absorption · systemic</div>
+          <h3>Multi-modal skin (systemic microvascular) imaging</h3>
+          <p>A clinical instrument pairing LSCI with multispectral / hyperspectral imaging to read out skin perfusion and oxygenation, condensing large imaging datasets into interpretable microvascular biomarkers. Deployed across multi-thousand-subject clinical studies, with a second-generation system coming to CFIN.</p>
+        </div>
+        <div class="im"><img src="assets/skin-perfusion-imaging.jpg" alt="Clinical skin perfusion and oxygenation imaging system with reactive-hyperemia traces"></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SECTION 3 ================= -->
+<section id="projects">
+  <div class="wrap">
+    <div class="sec-num">III · Key research projects</div>
+    <h2>The microvascular hypothesis at the heart of our work</h2>
+    <p class="lead">Across our projects runs a single guiding hypothesis: that cardiometabolic risk factors reshape microvascular dynamics &mdash; pulsatility, vasomotion, transit time and neurovascular coupling &mdash; and that these altered dynamics act at once as a <em>consequence, a cause and a marker</em> of declining brain integrity.</p>
+    <figure class="diagram">
+      <img src="assets/hypotheses-framework.jpg" alt="Hypotheses framework: risk factors, microvascular dynamics, mechanisms and brain integrity">
+      <figcaption>Our hypotheses framework linking cardiometabolic risk factors, microvascular dynamics, underlying mechanisms and brain integrity.</figcaption>
+    </figure>
+
+    <div class="subhead">Active funded projects</div>
+
+    <div class="proj">
+      <div class="meta">Lundbeck Foundation Fellowship · <span class="yr">2021&ndash;2026</span></div>
+      <h3>From Hypertension to Dementia</h3>
+      <p>Advancing High-Speed LSCI to extract sensitive microvascular biomarkers and uncover the shared hemodynamic mechanisms that link hypertension to Alzheimer's disease, in clinical and pre-clinical models.</p>
+    </div>
+
+    <div class="proj">
+      <div class="meta">DFF Sapere Aude · Independent Research Fund Denmark · <span class="yr">2024&ndash;2027</span></div>
+      <h3>DIABENTIA &mdash; the microvascular link between diabetes and dementia</h3>
+      <p>Testing how microvascular stiffening of resistance vessels in diabetes disrupts autoregulation and neurovascular coupling, driving the cognitive decline that raises dementia risk.</p>
+    </div>
+
+    <div class="proj">
+      <div class="meta">Pioneer Innovator Grant · Novo Nordisk Foundation · <span class="yr">2025&ndash;2026</span></div>
+      <h3>InSpecT &mdash; integrated speckle, spectroscopic &amp; thermal imaging</h3>
+      <p>Advancing a non-invasive multimodal platform for assessing systemic microvascular function through skin perfusion and oxygenation, and initiating the CE-marking process for the device.</p>
+    </div>
+
+    <div class="proj">
+      <div class="meta">Sygeforsikringen &ldquo;Denmark&rdquo; · multi-PI collaboration · <span class="yr">2023&ndash;2026</span></div>
+      <h3>Early detection, characterisation &amp; treatment of microvascular disease</h3>
+      <p>Assessing the diagnostic potential of multimodal skin perfusion imaging in coronary and systemic microvascular disease, alongside a randomised trial of anti-inflammatory treatment.</p>
+    </div>
+
+    <div class="proj">
+      <div class="meta">BETA HEALTH · <span class="yr">2023&ndash;2024</span></div>
+      <h3>PerEval &mdash; personalised evaluation of microvascular disorders</h3>
+      <p>Establishing and validating a new diagnostic component for angina based on non-invasive peripheral perfusion imaging and individualised vascular-response assessment.</p>
+    </div>
+
+    <p class="small" style="margin-top:26px">These build on the group's foundational work, including the &ldquo;Optical biopsy&rdquo; programme (Novo Nordisk Foundation, 2017&ndash;2021) that corrected longstanding theoretical inaccuracies in laser speckle and Doppler imaging, and earlier studies of renal microvascular dynamics.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="org">Blood Flow Imaging Group</p>
+    <p>Center of Functionally Integrative Neuroscience (CFIN) · Department of Clinical Medicine · Aarhus University<br>
+    Contact: <a href="mailto:dpostnov@cfin.au.dk">dpostnov@cfin.au.dk</a></p>
+  </div>
+</footer>
+
+</body>
+</html>
