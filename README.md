@@ -1,32 +1,32 @@
-# Blood Flow Imaging Group — website
+# Blood Flow Imaging Group — Lab Website
 
-A single-page website for the Blood Flow Imaging Group (CFIN, Aarhus University),
-hosted for free on GitHub Pages.
+Single-page static website for the Blood Flow Imaging Group at CFIN, Aarhus University.
+Plain HTML/CSS/JS — no build step required.
 
 ## Files
+- `index.html` — the full one-page site (Who we are · Funding · Research · Infrastructure · Team · Join)
+- `styles.css` — styling
+- `main.js` — navigation, scroll-spy, scroll reveals, video lazy-play
+- `assets/` — images and videos
 
-- `index.html` — the entire website (text, layout, and styling in one file)
-- `assets/` — the photos and figures used on the page
+The top navigation buttons jump to each section, and the active section is
+highlighted as you scroll.
 
-## How to publish (GitHub Pages)
+## Deploy to GitHub Pages
+1. Create a new GitHub repository (e.g. `bfi-group`).
+2. Upload everything in this folder to the repository root (keep `assets/` intact).
+3. Repo → **Settings → Pages**.
+4. **Build and deployment → Source → Deploy from a branch**.
+5. Branch `main`, folder `/ (root)`, then **Save**.
+6. The site goes live at `https://<username>.github.io/<repo>/`.
 
-1. Create a free account at https://github.com if you don't have one.
-2. Create a new **public** repository. A simple name like `lab-website` is fine.
-3. On the repository page, choose **Add file → Upload files**, then drag in
-   `index.html` and the whole `assets` folder. Commit the changes.
-4. Go to **Settings → Pages**. Under "Build and deployment", set
-   **Source = Deploy from a branch**, **Branch = main**, **Folder = / (root)**, and Save.
-5. Wait ~1 minute. Your site appears at
-   `https://YOUR-USERNAME.github.io/lab-website/`
+> For a user/organisation site, name the repo `<username>.github.io` to serve at the root domain.
 
-## How to edit later
+## Light / dark theme
+The site loads in the **light theme by default**. A toggle in the top-right of the
+navigation switches between light and dark, and the choice is remembered between
+visits (via `localStorage`). Everything else (layout, content, fonts) is shared
+across both themes in `styles.css`.
 
-Open `index.html` in any text editor. The text content lives near the bottom of
-the file (after the `<body>` tag) and reads like plain prose inside tags — change
-the words between the tags and re-upload the file. To swap a photo, replace the
-matching file in `assets/` (keep the same filename) and re-upload it.
-
-## Using your own domain (optional)
-
-Buy a domain (e.g. from Cloudflare or Porkbun, ~$10–15/year), then add it under
-**Settings → Pages → Custom domain** and follow GitHub's DNS instructions.
+## Editing
+All text lives in `index.html`. Update copy there directly.
