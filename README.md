@@ -28,5 +28,33 @@ navigation switches between light and dark, and the choice is remembered between
 visits (via `localStorage`). Everything else (layout, content, fonts) is shared
 across both themes in `styles.css`.
 
+## Search engine visibility (SEO)
+The site is set up to be indexed by Google, Bing, etc. and to surface for queries like
+"Blood Flow Imaging", "Blood Flow Imaging Aarhus", "Neurophotonics Aarhus", and "Dmitry Postnov":
+
+- Descriptive `<title>`, meta description and keywords, Open Graph + Twitter cards.
+- Structured data (JSON-LD) describing the lab (ResearchOrganization), the PI
+  (Person — Dmitry Postnov, with links to LinkedIn / Google Scholar / ResearchGate),
+  and the website, so search engines can recognise them as entities.
+- `robots.txt` (allows all crawlers) and `sitemap.xml`.
+- The canonical URL, `og:url`, `og:image` and JSON-LD URLs are filled in automatically
+  with the live address, so they are correct on whatever domain you deploy to — no edit needed.
+
+### One-time steps to get indexed faster
+1. **(Optional) Set your real URL** in two files if it differs from the placeholder
+   `https://blood-flow-imaging.github.io/`: edit the `Sitemap:` line in `robots.txt`
+   and the `<loc>` in `sitemap.xml`.
+2. **Google Search Console** (https://search.google.com/search-console): add your site,
+   verify ownership (easiest: the "HTML tag" method — paste the provided
+   `<meta name="google-site-verification" ...>` tag into the `<head>` of `index.html`),
+   then submit `sitemap.xml`.
+3. **Bing Webmaster Tools** (https://www.bing.com/webmasters): add the site (you can import
+   from Google Search Console) and submit the sitemap.
+4. **Get a few inbound links** — e.g. from your Aarhus University staff page, your Google
+   Scholar profile, and a LinkedIn post. Inbound links are the strongest signal for fast
+   indexing and ranking on name queries.
+
+Indexing typically takes a few days to a couple of weeks after submission.
+
 ## Editing
 All text lives in `index.html`. Update copy there directly.

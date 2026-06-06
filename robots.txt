@@ -1,0 +1,6 @@
+# Blood Flow Imaging Group — allow all crawlers
+User-agent: *
+Allow: /
+
+# If your live URL differs from the one below, update it (one line).
+Sitemap: https://blood-flow-imaging.github.io/sitemap.xml
