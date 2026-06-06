@@ -41,9 +41,8 @@ The site is set up to be indexed by Google, Bing, etc. and to surface for querie
   with the live address, so they are correct on whatever domain you deploy to — no edit needed.
 
 ### One-time steps to get indexed faster
-1. **(Optional) Set your real URL** in two files if it differs from the placeholder
-   `https://blood-flow-imaging.github.io/`: edit the `Sitemap:` line in `robots.txt`
-   and the `<loc>` in `sitemap.xml`.
+1. The live URL is already set throughout to `https://ddpostnov.github.io/blood-flow-imaging-group/` (canonical, Open Graph, JSON-LD,
+   `robots.txt`, `sitemap.xml`). Nothing to edit unless the address changes.
 2. **Google Search Console** (https://search.google.com/search-console): add your site,
    verify ownership (easiest: the "HTML tag" method — paste the provided
    `<meta name="google-site-verification" ...>` tag into the `<head>` of `index.html`),
